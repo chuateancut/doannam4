@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    height: 100vh; /* Chiều cao toàn bộ màn hình */
+}
+
+.sidebar {
+    width: 15%; /* Chiếm 15% chiều rộng */
+    background-color: #f4f4f4;
+   
+    overflow: hidden; /* Không cho phép cuộn */
+    height: 100vh; /* Chiều cao 100% màn hình */
+}
+
+.main-content {
+    width: 85%; /* Chiếm 85% chiều rộng */
+    background-color: #fff;
+    
+    overflow-y: auto; /* Cho phép cuộn khi có nhiều nội dung */
+    height: 100vh; /* Chiều cao 100% màn hình */
+}
+.logo{
+   display: flex;
+   justify-content: center;
+   margin: 20px auto;
+}
+.container .sidebar  a {
+    font-size: 25px;
+color: inherit;
+text-decoration: none;
+}
+.header {
+    width: 100%;
+    height: 80px;
+    background-color: #3e3e3e;
+    display: flex; /* Sử dụng Flexbox */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.header input {
+    width: 400px; /* Điều chỉnh độ rộng của input */
+    padding: 10px; /* Khoảng cách bên trong input */
+    font-size: 16px;
+}
+
+.header button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-left: 10px; /* Khoảng cách giữa input và button */
+}
+
+.tong--user{
+    display: flex;
+    margin-top: 50px;
+    margin-left: 70px;
+    padding: 15px 15px;
+    background-color: #ffb90f;
+   width: 270px;
+   height: 120px;
+   font-family: 'Roboto', sans-serif; /* Sử dụng font Roboto */
+            font-size: 20px; /* Kích thước font chữ mặc định */
+            color: #333; /* Màu chữ chính */
+            border-radius: 8px;
+}
+.tong--user i{
+    padding-top: 10px;
+}
+.tong--user p{
+    padding-top: 10px;
+}
+.tong--i {
+    margin-left: auto; /* Đẩy phần tử này về phía bên phải */
+}
+.tong--i i{
+    font-size: 50px;
+}
+.container--tong{
+    display: flex;
+}
+.user{
+    background-color: #8470ff;
+}
+.tongsanpham{
+    background-color: 	#87cefa;
+}
+.tongtien{
+    background-color: 	#ff6a6a;
+}
+/* CSS cho bảng đẹp hơn */
+.table--donhang table {
+    width: 98%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: left;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.table--donhang th, .table--donhang td {
+    padding: 12px 15px;
+}
+
+.table--donhang thead th {
+    background-color: #009879;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.table--donhang tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.table--donhang tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.table--donhang tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.table--donhang tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* Thêm hiệu ứng khi hover vào các ô trong bảng */
+.table--donhang td {
+    transition: background-color 0.2s ease;
+}
+
+.table--donhang td:hover {
+    background-color: #f0f0f0;
+}
+
+/* CSS cho tiêu đề bảng */
+.table--donhang thead {
+    background-color: #4CAF50;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.container--tim {
+    margin: 20px; /* Khoảng cách xung quanh thẻ cha */
+    padding: 20px; /* Khoảng cách bên trong thẻ cha */
+    background-color: #f9f9f9; /* Màu nền cho thẻ cha */
+    border: 1px solid #ddd; /* Đường biên cho thẻ cha */
+    border-radius: 8px; /* Bo góc cho thẻ cha */
+}
+
+/* Định dạng cho bảng bên trong thẻ cha */
+.table--tim {
+    width: 100%; /* Chiều rộng bảng */
+    border-collapse: collapse; /* Hợp nhất đường biên */
+    margin-top: 10px; /* Khoảng cách giữa bảng và thẻ cha */
+}
+
+/* Định dạng cho tiêu đề bảng */
+.table--tim th, .table--tim td {
+    border: 1px solid #ddd; /* Đường biên cho ô */
+    padding: 10px; /* Khoảng cách bên trong ô */
+    text-align: left; /* Căn trái nội dung ô */
+}
+
+/* Định dạng cho tiêu đề cột */
+.table--tim th {
+    background-color: #4CAF50; /* Màu nền tiêu đề */
+    color: white; /* Màu chữ tiêu đề */
+}
+
+/* Định dạng cho hàng chẵn */
+.table--tim tr:nth-child(even) {
+    background-color: #f2f2f2; /* Màu nền cho hàng chẵn */
+}
+
+/* Định dạng cho hàng khi di chuột qua */
+.table--tim tr:hover {
+    background-color: #ddd; /* Màu nền khi di chuột */
+}
+
+/* Định dạng cho thông báo không tìm thấy sản phẩm */
+.no-result {
+    text-align: center; /* Căn giữa thông báo */
+    color: red; /* Màu chữ thông báo */
+    font-weight: bold; /* Đậm chữ */
+}
+
+.btn--add-delete button {
+    padding: 5px 10px;
+    margin: 0px 10px;
+}
+.container--addproduct {
+    max-height: 0; /* Ẩn phần tử bằng cách đặt chiều cao tối thiểu */
+    overflow: hidden; /* Ẩn nội dung vượt quá chiều cao */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: max-height 0.9s ease-out; /* Hiệu ứng chuyển đổi chiều cao */
+}
+
+.container--addproduct.show {
+    max-height: 500px; /* Chiều cao tối đa để hiển thị toàn bộ nội dung, có thể chỉnh theo nội dung của bạn */
+}
+
+.container--addproduct label {
+    width: 80%; 
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.container--addproduct input, select {
+    width: 80%;
+    padding: 10px;
+}
+
+.container--addproduct button {
+    width: 20%;
+    padding: 10px 0;
+    background-color: #87cefa;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container--addproduct button:hover {
+    background-color: #00bfff;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn--add--product {
+    background-color: #87cefa;
+    padding: 10px 8px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn--add--product:hover {
+    background-color: #00bfff;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+}
+.container--changeproduct{
+    /* max-height: 0; 
+    overflow: hidden;  */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: max-height 0.9s ease-out; /* Hiệu ứng chuyển đổi chiều cao */
+}

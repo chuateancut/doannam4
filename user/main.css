@@ -1,0 +1,496 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+.header {
+    background-color: #4d4d4d;
+    font-family: 'Arial', sans-serif;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+.header--right {
+    display: flex;
+   
+}
+.header--right ul {
+    display: flex;
+   
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+.header--right li {
+    list-style-type: none;
+    padding-left: 60px;
+    
+}
+.danhsach:hover{
+ text-decoration: underline;
+  color: #f0f8ff;
+}
+.header--right li a {
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.header--left{
+    padding-right: 20px;
+    margin-left: auto;
+    display: flex;
+   
+}
+.header--left--ul{
+    display: flex;
+    padding-left: 60px;
+}
+.header--left li {
+    list-style-type: none;
+    padding-left: 40px;
+    position: relative;
+}
+.header--left li a {
+    font-size: 22px;
+    color: white;
+    text-decoration: none;
+}
+.product-list{
+    padding-top: 50px;
+}
+.text--fullproduct{
+    text-align: center;
+    padding-bottom: 40px;
+    
+}
+.background--content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center;    /* Căn giữa theo chiều dọc */
+    height: 140vh;          /* Chiều cao 100% màn hình */
+    padding-top: 120px;
+}
+
+.image-container img {
+    max-width: 100%;        /* Giới hạn chiều rộng của hình ảnh */
+    height: auto;           /* Giữ tỉ lệ hình ảnh */
+}
+
+.header--right li:hover .header--menu--ul--child {
+    display: block;
+    color: black; /* Hiển thị menu con khi hover vào mục cha */
+}
+.header--menu--li--child:hover a {
+    color: black; /* Đổi màu chữ cho liên kết bên trong */
+    background-color: 	#f0f8ff;
+    padding: 8px 10px;
+  
+}
+.header .header--right .header--menu--li--child {
+    margin-left: -30px;
+    padding-top: 10px;
+    font-size: 15px;
+    color: white;
+    margin-right: 30px;
+}
+.header .header--right .header--menu--ul--child{
+    display: none;
+    border-top: 1px solid 	#ff4040;
+    flex-direction: column;
+    position: absolute;
+    background-color: #4d4d4d;
+    display: none; /* Ẩn menu con ban đầu */
+    z-index: 999;
+    margin-left: -20px;
+    padding-bottom: 10px; /* Đảm bảo menu con hiển thị trên các phần tử khác */
+}
+.img--product{
+    width: 250px;
+    height: 350px;
+}
+.img--product:hover {
+    transform: scale(1.1); /* Phóng to hình ảnh lên 10% */
+}
+.full--product{
+    display: flex;
+    justify-content: center;
+}
+.list--product{
+    display: flex;
+    flex-wrap: wrap; /* Đảm bảo các sản phẩm tự động xuống hàng */
+    gap: 20px; /* Khoảng cách giữa các sản phẩm */
+    max-width: 1100px;
+    justify-content: center;
+}
+.product-item{
+    text-align: center;
+    background: #e0eeee;
+    padding: 5px;
+    border-radius: 8px;
+}
+.product-item h3{
+    padding: 7px 0px;
+}
+.btn--buy {
+    background-color: #74C0FC; /* Màu nền */
+    color: white; /* Màu chữ */
+    border: none; /* Không có viền */
+    border-radius: 5px; /* Bo góc */
+    padding: 10px 20px; /* Khoảng cách bên trong */
+    font-size: 16px; /* Kích thước chữ */
+    cursor: pointer; /* Hiệu ứng con trỏ khi di chuột */
+    transition: background-color 0.3s, transform 0.3s; /* Hiệu ứng chuyển màu và phóng to */
+    margin-right: 20px;
+}
+
+.btn--buy:hover {
+    background-color: #5ba3d7; /* Màu nền khi hover */
+    transform: scale(1.1); /* Phóng to nhẹ khi hover */
+}
+.btn--add{
+    color: #74C0FC; /* Màu sắc mặc định */
+    transition: color 0.3s, transform 0.3s; /* Hiệu ứng chuyển màu và phóng to */
+}
+.btn--add:hover {
+    color: #5ba3d7; /* Màu sắc khi hover */
+    transform: scale(1.5); /* Phóng to nhẹ khi hover */
+}
+
+.header--left .user--li--father {
+    position: relative;
+    background-color: #4d4d4d;
+}
+
+/* Ẩn menu con ban đầu */
+.user--ul {
+    width: 250px;
+    display: none;
+    position: absolute;
+    background-color: #4d4d4d;
+    border-top: 1px solid #ff4040;
+    z-index: 999;
+    margin-left: -170px;
+     margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Hiển thị menu con khi hover vào thẻ cha */
+.header--left li:hover .user--ul {
+    display: block;
+}
+
+/* Hiệu ứng hover cho các liên kết trong menu người dùng */
+.user--li:hover a {
+    color: black; /* Đổi màu chữ khi hover */
+    background-color: #f0f8ff; /* Màu nền khi hover */
+    padding: 6px 10px;
+}
+h2{
+    padding-top: 100px;
+}
+.name--img{
+    padding-right: 200px;
+}
+.img--product--quannam{
+    width: 350px;
+    height: 500px;
+}
+.full--product .name--img p {
+   font-size: 20px;
+    padding-top: 10px;
+    text-align: center;
+}
+.btn--size  {
+    width: 40px; /* Chiều rộng */
+    height: 40px; /* Chiều cao */
+    background-color: #5e5e5e; /* Màu nền mặc định */
+    border: none;
+    margin: 5px;
+    font-size: 20px; /* Kích thước chữ */
+    cursor: pointer;
+   
+    /* justify-content: center;  */
+    /* align-items: center;  */
+  }
+  .btn--color{
+    width: 40px; /* Chiều rộng */
+    height: 40px; /* Chiều cao */
+    background-color: #5e5e5e; /* Màu nền mặc định */
+    
+    margin: 5px;
+    font-size: 20px; /* Kích thước chữ */
+    cursor: pointer;
+  }
+  .a--buy{
+    color: inherit;
+    text-decoration: none;
+  }
+.btn--size.selected {
+    background-color: black; /* Màu khi nút được chọn */
+    color: white;
+  }
+.btn--color.selected {
+    border: 2px solid #74C0FC;
+  }
+  .btn--buynow{
+  background-color: #ff4040;
+  font-family: 'Roboto', sans-serif;
+  color: #e0eeee;
+    width: 400px;
+    height: 40px;
+  }
+  .input--soluong{
+    font-size: 20px;
+    width: 100px;
+    height: 30px;
+  }
+  .product-description {
+    width: 400px; /* Hoặc chiều rộng bạn muốn */
+    word-wrap: break-word; /* Để đảm bảo từ dài không bị tràn ra ngoài */
+    overflow-wrap: break-word; /* Để hỗ trợ các trình duyệt khác */
+    white-space: normal; /* Để đảm bảo rằng văn bản sẽ tự động xuống dòng */
+}
+#toggleDetailsBtn {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* Bo góc cho nút */
+}
+
+#toggleDetailsBtn:hover {
+    background-color: #0056b3; /* Thay đổi màu khi di chuột */
+}
+
+.product-description ul {
+    margin-top: 10px;
+    padding-left: 20px; /* Khoảng cách bên trái cho danh sách */
+}
+.product-description ul {
+    list-style-type: none; /* Ẩn dấu chấm */
+    padding-left: 0; /* Bỏ khoảng cách bên trái */
+}
+
+.product-description ul li::before {
+    content: '- '; /* Thêm dấu - trước mỗi mục */
+}
+.list--page{
+    display: flex;
+    justify-content: center;
+}
+.ul--list--page{
+    
+    display: flex;
+}
+.ul--list--page li {
+    list-style-type: none;
+    padding: 10px 0; /* Giữ padding trên và dưới để căn giữa nội dung */
+    width: 25px; /* Chiều rộng */
+    height: 25px; /* Chiều cao */
+    background-color: #0056b3; /* Màu nền */
+    border-radius: 50%; /* Tạo hình tròn */
+    display: flex; /* Sử dụng flexbox để căn giữa nội dung */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    margin: 30px 5px; /* Điều chỉnh khoảng cách giữa các thẻ li */
+    color: #fff;
+}
+
+.ul--list--page a {
+    color: inherit; /* Thừa hưởng màu từ phần tử cha */
+    text-decoration: none; /* Không gạch chân */
+}
+.ul--list--page li.active {
+    background-color: red; /* Màu nền khi nút được chọn */
+}
+.text--sanphamquantam{
+    text-align: center;
+    padding-bottom: 50px;
+}
+.text--hello{
+    font-size: 25px;
+}
+.a {
+    color: inherit; /* Thừa hưởng màu từ phần tử cha */
+    text-decoration: none; /* Không gạch chân */
+}
+.btn--size.selected {
+    background-color: #74C0FC; /* Màu khi được chọn */
+    color: #fff;
+}
+/* Ẩn các nút radio mặc định */
+.size-radio {
+    display: none;
+}
+
+/* Style cho các nhãn (label) giả dạng nút */
+.btn--size {
+    width: 40px; /* Chiều rộng */
+    height: 40px; /* Chiều cao */
+    background-color: #5e5e5e; /* Màu nền mặc định */
+    border: none;
+    margin: 5px;
+    font-size: 20px; /* Kích thước chữ */
+    cursor: pointer;
+    display: inline-flex; /* Căn giữa */
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 5px; /* Bo góc cho đẹp */
+}
+
+/* Thay đổi màu khi radio được chọn */
+.size-radio:checked + .btn--size {
+    background-color: #3498db; /* Màu nền khi chọn */
+    color: white; /* Màu chữ khi chọn */
+}
+/* Ẩn các nút radio mặc định */
+.color--radio {
+    display: none;
+}
+
+/* Style cho các nhãn (label) giả dạng nút màu */
+.btn--color {
+    width: 40px; /* Chiều rộng */
+    height: 40px; /* Chiều cao */
+    border: none;
+    margin: 5px;
+    font-size: 16px; /* Kích thước chữ */
+    cursor: pointer;
+    display: inline-flex; /* Căn giữa */
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px; /* Bo góc cho đẹp */
+    padding: 10px;
+}
+
+/* Thay đổi màu khi radio được chọn */
+.color--radio:checked + .btn--color {
+    border: 2px solid #3498db; /* Viền khi nút được chọn */
+}
+.btn--buynow, 
+.btn--buynow a {
+    background-color: #ff4040;
+    font-family: 'Roboto', sans-serif;
+    color: #e0eeee;
+    width: 400px;
+    height: 40px;
+    display: inline-block;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none; /* Loại bỏ gạch chân */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.footer {
+    background-color: #333; /* Màu nền cho footer */
+    padding: 20px 0; /* Khoảng cách bên trong */
+    color: white;
+}
+
+.footer-container {
+    display: flex; /* Để tạo một layout dạng flex */
+    justify-content: space-between; /* Căn giữa các phần tử */
+    max-width: 1200px; /* Chiều rộng tối đa */
+    margin: 0 auto; /* Căn giữa */
+    padding: 0 20px; /* Khoảng cách bên trong */
+}
+
+.footer-info, .footer-links, .footer-social {
+    flex: 1; /* Mỗi phần tử sẽ chiếm 1 phần của container */
+    padding: 0 20px; /* Khoảng cách bên trong cho từng phần */
+}
+
+.footer-links ul {
+    list-style: none; /* Bỏ gạch đầu dòng */
+    padding: 0; /* Bỏ padding */
+}
+
+.footer-links ul li {
+    margin-bottom: 10px; /* Khoảng cách giữa các liên kết */
+}
+
+.footer-links a {
+    text-decoration: none; /* Bỏ gạch chân */
+    color: #007BFF; /* Màu chữ */
+}
+
+.footer-links a:hover {
+    text-decoration: underline; /* Gạch chân khi hover */
+}
+
+.footer-bottom {
+    text-align: center; /* Căn giữa nội dung */
+    margin-top: 20px; /* Khoảng cách trên */
+    font-size: 14px; /* Kích thước chữ */
+    color: #6c757d; /* Màu chữ */
+}
+
+
+@media (max-width: 768px) {
+   
+  
+    .header--right {
+      
+      display: none;
+    }
+    .text--hello{
+        text-align: center;
+        
+    }
+    .background--content{
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 50vh;
+        display: flex;
+        max-width: 100%;
+        
+    }
+    .background--content , .text--hello{
+        text-align: center;
+       
+    }
+    .img--content{
+        width: 100%;
+       
+    }
+    .product-item{
+        max-width: 35%;
+    }
+    .img--product{
+        width: 120px;
+        height: 200px;
+    }
+    .a--buy {
+        display: inline-block;
+        padding: 5px 10px; /* Điều chỉnh padding để nút đẹp hơn */
+        background-color: #ff6600; /* Màu nền cho nút */
+        color: white; /* Màu chữ */
+        text-align: center; /* Căn chữ vào giữa */
+        border: none; /* Loại bỏ viền */
+        border-radius: 5px; /* Tạo góc bo tròn cho nút */
+        font-size: 10px; /* Cỡ chữ */
+        cursor: pointer; /* Con trỏ khi di chuột qua nút */
+    }
+    
+    .a--buy:hover {
+        background-color: #cc5200;      /* Thay đổi màu khi hover */
+    }
+    .btn--buy--add{
+        display: flex;
+    }
+    .header--left li{
+        font-size: 15px;
+        padding-left: 5px;
+    }
+  }
+
+
+ 
