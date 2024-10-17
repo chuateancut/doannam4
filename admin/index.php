@@ -45,6 +45,7 @@ $result_donhang = $conn->query($sql_donhang);
             <img class="logo" src="https://tse1.mm.bing.net/th?id=OIP.WuhFKY7a0IpWwM-HWueyhQHaHI&pid=Api&P=0&h=180" alt="">
             <div style="padding: 10px;"><a href=""><i class="fa-solid fa-house"></i> Trang Chủ</a></div>
             <div style="padding: 10px;"><a href="themsuaxoa.php"><i class="fa-solid fa-wrench"></i> Thêm, Sửa, Xóa</a></div>
+            <div style="padding: 10px;"><a href="quanlikhachhang.php"><i class="fa-solid fa-user"></i> Quản Lí Khách Hàng</a></div>
         </div>
         <div class="main-content">
             <div class="header">
@@ -56,6 +57,7 @@ $result_donhang = $conn->query($sql_donhang);
 
             <div class="container--tong">
                 <div class="tong--user user">
+                    <a href="quanlikhachhang.php">
                     <div>
                         <?php 
                         if ($result_user->num_rows > 0) {
@@ -64,10 +66,12 @@ $result_donhang = $conn->query($sql_donhang);
                         }
                         ?>
                     </div>
+                    </a>
                     <div class="tong--i"><i class="fa-solid fa-user"></i></div>
                 </div>
                 <div class="tong--user donhang">
-                    <div>
+                   <a href="index.php">
+                   <div>
                         <?php 
                         if ($result_tongdonhang->num_rows > 0) {
                             $rowtongdonhang = $result_tongdonhang->fetch_assoc();
@@ -75,9 +79,11 @@ $result_donhang = $conn->query($sql_donhang);
                         }
                         ?>
                     </div>
+                   </a>
                     <div class="tong--i"><i class="fa-solid fa-cart-shopping"></i></div>
                 </div>
                 <div class="tong--user tongtien">
+                    <a href="quanlikhachhang.php">
                     <div>
                         <?php 
                         if ($result_tongtien->num_rows > 0) {
@@ -86,9 +92,11 @@ $result_donhang = $conn->query($sql_donhang);
                         }
                         ?>
                     </div>
+                    </a>
                     <div class="tong--i"><i class="fa-solid fa-money-bill"></i></div>
                 </div>
                 <div class="tong--user tongsanpham">
+                    <a href="themsuaxoa.php">
                     <div>
                         <?php 
                         if ($result_tongsanpham->num_rows > 0) {
@@ -97,6 +105,7 @@ $result_donhang = $conn->query($sql_donhang);
                         }
                         ?>
                     </div>
+                    </a>
                     <div class="tong--i"><i class="fa-solid fa-wrench"></i></div>
                 </div>
             </div>

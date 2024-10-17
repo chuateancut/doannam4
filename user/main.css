@@ -77,14 +77,7 @@ body{
     height: 150vh;          /* Chiều cao 100% màn hình */
    padding-top: 100px;
 }
-.background--content1 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Căn giữa theo chiều ngang */
-    align-items: center;    /* Căn giữa theo chiều dọc */
-    height: 150vh;          /* Chiều cao 100% màn hình */
-   padding-top: 100px;
-}
+
 
 .image-container img {
     max-width: 100%;        /* Giới hạn chiều rộng của hình ảnh */
@@ -134,14 +127,14 @@ body{
     display: flex;
     flex-wrap: wrap; /* Đảm bảo các sản phẩm tự động xuống hàng */
     gap: 40px; /* Khoảng cách giữa các sản phẩm */
-    max-width: 1200px;
+    max-width: 1250px;
     justify-content: center;
 }
 .product-item{
     text-align: center;
     background: #e0eeee;
-    padding: 5px;
-    border-radius: 8px;
+    padding: 15px;
+    border-radius: 24px;
 }
 .product-item h3{
     padding: 7px 0px;
@@ -178,7 +171,7 @@ body{
 
 /* Ẩn menu con ban đầu */
 .user--ul {
-    width: 250px;
+    width: 300px;
     display: none;
     position: absolute;
     background-color: #4d4d4d;

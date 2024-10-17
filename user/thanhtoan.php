@@ -159,7 +159,7 @@ button:hover {
             <input type="tel" id="phone" name="phone" required>
 
             <label for="address">Địa Chỉ:</label>
-            <input type="text" id="address" name="address" required>
+            <input type="text" id="address" name="address" placeholder="Tỉnh - Huyện - Xã - Vị trí cụ thể" required>
 
             <label for="notes">Ghi Chú:</label>
             <textarea id="notes" name="notes" rows="4"></textarea>

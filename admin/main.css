@@ -97,6 +97,7 @@ text-decoration: none;
 .tongtien{
     background-color: 	#ff6a6a;
 }
+
 /* CSS cho bảng đẹp hơn */
 .table--donhang table {
     width: 98%;
@@ -223,7 +224,7 @@ text-decoration: none;
 }
 
 .container--addproduct input, select {
-    width: 100%;
+    width: 80%;
     padding: 5px;
 }
 
@@ -270,4 +271,9 @@ text-decoration: none;
     justify-content: center;
     align-items: center;
     transition: max-height 0.9s ease-out; /* Hiệu ứng chuyển đổi chiều cao */
+}
+.container--tong a {
+    text-decoration: none;
+    color: #000;
+
 }

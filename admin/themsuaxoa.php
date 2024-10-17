@@ -50,6 +50,7 @@ $result_suasanpham = mysqli_query($conn, $sql_suasanpham);
       <img class="logo" src="https://tse1.mm.bing.net/th?id=OIP.WuhFKY7a0IpWwM-HWueyhQHaHI&pid=Api&P=0&h=180" alt="">
       <div style="padding: 10px;"><a  href="index.php"><i class="fa-solid fa-house">  </i> Trang Chủ</a></div>
       <div style="padding: 10px;" ><a href=""><i class="fa-solid fa-wrench"></i> Thêm,Sửa,Xóa</a></div>
+      <div style="padding: 10px;"><a href="quanlikhachhang.php"><i class="fa-solid fa-user"></i> Quản Lí Khách Hàng</a></div>
         </div>
         <div class="main-content">
         <div class="header">
@@ -60,56 +61,60 @@ $result_suasanpham = mysqli_query($conn, $sql_suasanpham);
     </form>
 </div>
 
-          <div class="container--tong" >
-            <div class="tong--user user" >
-                <div>
-                <?php 
-                if($result_user -> num_rows >0){
-                    $rowuser = $result_user -> fetch_assoc();
-                    echo  " <p>Tổng Thành Viên  </p>" .$rowuser['tong_user'];
-                }
-                ?>
+<div class="container--tong">
+                <div class="tong--user user">
+                    <a href="quanlikhachhang.php">
+                    <div>
+                        <?php 
+                        if ($result_user->num_rows > 0) {
+                            $rowuser = $result_user->fetch_assoc();
+                            echo "<p>Tổng Thành Viên</p>" . $rowuser['tong_user'];
+                        }
+                        ?>
+                    </div>
+                    </a>
+                    <div class="tong--i"><i class="fa-solid fa-user"></i></div>
                 </div>
-            <div class="tong--i" ><i class="fa-solid fa-user"></i></div>
-          
-            </div>
-            <div class="tong--user donhang" >
-                <div>
-                <?php 
-                if($result_tongdonhang -> num_rows >0){
-                    $rowtongdonhang = $result_tongdonhang -> fetch_assoc();
-                    echo  " <p>Tổng Đơn Hàng  </p>" .$rowtongdonhang['tongdonhang'];
-                }
-                ?>
+                <div class="tong--user donhang">
+                   <a href="index.php">
+                   <div>
+                        <?php 
+                        if ($result_tongdonhang->num_rows > 0) {
+                            $rowtongdonhang = $result_tongdonhang->fetch_assoc();
+                            echo "<p>Tổng Đơn Hàng</p>" . $rowtongdonhang['tongdonhang'];
+                        }
+                        ?>
+                    </div>
+                   </a>
+                    <div class="tong--i"><i class="fa-solid fa-cart-shopping"></i></div>
                 </div>
-            <div class="tong--i" ><i class="fa-solid fa-cart-shopping"></i></div>
-          
-            </div>
-            <div class="tong--user tongtien " >
-                <div>
-                <?php 
-                if($result_tongtien -> num_rows >0){
-                    $rowtongtien = $result_tongtien -> fetch_assoc(); 
-                    echo  " <p>Tổng Tiền Bán "  .number_format($rowtongtien['tongtien'],0,',','.')." VND </p>" ;
-                }
-                ?>
+                <div class="tong--user tongtien">
+                    <a href="quanlikhachhang.php">
+                    <div>
+                        <?php 
+                        if ($result_tongtien->num_rows > 0) {
+                            $rowtongtien = $result_tongtien->fetch_assoc();
+                            echo "<p>Tổng Tiền Bán</p>" . number_format($rowtongtien['tongtien'], 0, ',', '.') . " VND";
+                        }
+                        ?>
+                    </div>
+                    </a>
+                    <div class="tong--i"><i class="fa-solid fa-money-bill"></i></div>
                 </div>
-            <div class="tong--i" ><i class="fa-solid fa-money-bill"></i></div>
-          
-            </div>
-            <div class="tong--user tongsanpham " >
-                <div>
-                <?php 
-                if($result_tongsanpham -> num_rows >0){
-                    $rowtongsanpham = $result_tongsanpham -> fetch_assoc();
-                    echo  " <p>Tổng Sản Phẩm  </p>" .$rowtongsanpham['tongsanpham'];
-                }
-                ?>
+                <div class="tong--user tongsanpham">
+                    <a href="themsuaxoa.php">
+                    <div>
+                        <?php 
+                        if ($result_tongsanpham->num_rows > 0) {
+                            $rowtongsanpham = $result_tongsanpham->fetch_assoc();
+                            echo "<p>Tổng Sản Phẩm</p>" . $rowtongsanpham['tongsanpham'];
+                        }
+                        ?>
+                    </div>
+                    </a>
+                    <div class="tong--i"><i class="fa-solid fa-wrench"></i></div>
                 </div>
-            <div class="tong--i" ><i class="fa-solid fa-wrench"></i></div>
-          
             </div>
-          </div>
 
 
           <div class="table--donhang" >

@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
     } else {
         // Tạo câu lệnh SQL thêm dữ liệu vào bảng 'thongtingiaohang'
         $sql = "INSERT INTO thongtingiaohang (idsanpham, username, tennguoinhan, numberphone, diachicuthe, namesanpham, soluong, color, size, price,phuongthucthanhtoan, ghichu) 
-                VALUES ('$idsanpham', '$user', '$namenguoinhan', '$numberphone', '$diachhicuthe', '$namesanpham', '$soluong', '$color', '$size', '$price','$payment', '$ghichu')";
+                VALUES ('$idsanpham', '$user', '$namenguoinhan', '$numberphone', '$diachhicuthe', '$namesanpham', '$soluong', '$color', '$size', '$tongtien','$payment', '$ghichu')";
 
         // Thực thi câu lệnh và kiểm tra kết quả
         if ($conn->query($sql) === TRUE) {
