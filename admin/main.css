@@ -190,6 +190,7 @@ text-decoration: none;
     background-color: #ddd; /* Màu nền khi di chuột */
 }
 
+
 /* Định dạng cho thông báo không tìm thấy sản phẩm */
 .no-result {
     text-align: center; /* Căn giữa thông báo */
@@ -222,8 +223,8 @@ text-decoration: none;
 }
 
 .container--addproduct input, select {
-    width: 80%;
-    padding: 10px;
+    width: 100%;
+    padding: 5px;
 }
 
 .container--addproduct button {

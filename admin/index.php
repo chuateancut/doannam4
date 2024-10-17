@@ -34,7 +34,7 @@ $result_donhang = $conn->query($sql_donhang);
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         .sidebar a:hover{
-            background-color: #98f5ff;
+            background-color: #faf0e6;
             padding: 10px;
         }
     </style>
@@ -186,7 +186,7 @@ $result_donhang = $conn->query($sql_donhang);
                                             <option value="Đã Hủy">Đã Hủy</option>
                                         </select>
                                         <input type="hidden" name="madonhang" value="<?php echo $rowdonhang['madonhang']; ?>">
-                                        <div>
+                                        <div style="padding-top: 5px;" >
                                             <button name="huydon">Hủy Đơn</button>
                                             <button name="capnhattrangthai">Cập nhật</button>
                                         </div>

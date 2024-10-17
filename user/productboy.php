@@ -16,22 +16,22 @@ if (isset($_SESSION['user'])) {
     }
 }   
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
-    $username = $user['username']; // Lấy username từ session
-    $idsanpham = $_POST['idsanpham']; // ID sản phẩm từ form
-    $img = $_POST['img']; // Ảnh sản phẩm từ form
-    $namesanpham = $_POST['namesanpham']; // Tên sản phẩm từ form
-    $price = $_POST['price']; // Giá sản phẩm từ form
-
-    // Thêm vào bảng giohang
-    $query = "INSERT INTO giohang (username, idsanpham, img, namesanpham, price) VALUES ('$username', '$idsanpham', '$img', '$namesanpham', '$price')";
+    $username = $user['username'];
+    $idsanpham = $_POST['idsanpham'];
+    $img = $_POST['img'];
+    $namesanpham = $_POST['namesanpham'];
+    $price = $_POST['price'];
+    $soluong = 1;
+    $query = "INSERT INTO giohang (username, idsanpham, img, namesanpham, price,soluong) VALUES ('$username', '$idsanpham', '$img', '$namesanpham', '$price','$soluong')";
     $insert_result = mysqli_query($conn, $query);
 
     if (!$insert_result) {
-        die("Lỗi thêm vào giỏ hàng: " . mysqli_error($conn)); // Thông báo lỗi nếu không thành công
+        die("Lỗi thêm vào giỏ hàng: " . mysqli_error($conn));
     }
-    // Thiết lập thông báo JavaScript khi thêm thành công
     echo "<script>alert('Sản phẩm đã được thêm vào giỏ hàng!');</script>";
 }
+
+
 $limit = 4; // Số sản phẩm trên mỗi trang
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Trang hiện tại
 $offset = ($page - 1) * $limit; // Tính toán offset cho truy vấn SQL
@@ -103,7 +103,13 @@ $total_pages = ceil($total_products / $limit);
     font-size: 14px; /* Kích thước chữ */
     color: #6c757d; /* Màu chữ */
 }
-
+.background--content1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center;    /* Căn giữa theo chiều dọc */
+   padding-top: 80px;
+}
 
 </style>
 </head>
@@ -143,7 +149,12 @@ $total_pages = ceil($total_products / $limit);
          </ul>
        </div>
     </div>
-    <h2 style="padding-top: 120px; text-align: center; margin-bottom: -70px;" >TẤT CẢ SẢN PHẨM</h2>
+    <div class="background--content1" >
+               <H2 class="text--hello" style="padding: 30px 0 " >ĐẸP TRAI THỬ NGAY</H2>
+               <div> <img class="img--content" src="https://cmsv2.yame.vn/uploads/f5a45bc2-1880-4adf-b4b3-640670a1bd3f/BST_THE_SEAFARER_TRANG_CH%e1%bb%a6.jpg?quality=80&w=1280&h=0" alt=""> </div>
+
+           </div>
+           <h2 style="padding-top: 70px; text-align: center; margin-bottom: -70px;" >TẤT CẢ SẢN PHẨM</h2>
     <div class="full--product">
     <div class="list--product">
     <?php 

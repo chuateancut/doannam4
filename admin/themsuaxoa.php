@@ -48,7 +48,7 @@ $result_suasanpham = mysqli_query($conn, $sql_suasanpham);
     <div class="container">
         <div class="sidebar">
       <img class="logo" src="https://tse1.mm.bing.net/th?id=OIP.WuhFKY7a0IpWwM-HWueyhQHaHI&pid=Api&P=0&h=180" alt="">
-      <div style="padding: 10px;"><a href="index.php"><i class="fa-solid fa-house">  </i> Trang Chủ</a></div>
+      <div style="padding: 10px;"><a  href="index.php"><i class="fa-solid fa-house">  </i> Trang Chủ</a></div>
       <div style="padding: 10px;" ><a href=""><i class="fa-solid fa-wrench"></i> Thêm,Sửa,Xóa</a></div>
         </div>
         <div class="main-content">

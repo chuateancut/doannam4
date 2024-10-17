@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
 
         // Thực thi câu lệnh và kiểm tra kết quả
         if ($conn->query($sql) === TRUE) {
-            echo "Đơn hàng đã được thêm thành công.";
+            echo "<script>alert('mua hàng thành công ! xem ngay');window.location.href='xemdonhang.php';</script>";
         } else {
             echo "Lỗi: " . $conn->error;
         }
@@ -73,7 +73,7 @@ if (isset($_POST['submit--giohang'])) {
                 VALUES ('$idsanpham', '$user', '$namenguoinhan', '$numberphone', '$diachhicuthe', '$namesanpham', '$soluong', '$color', '$size', '$tongtien','$payment', '$ghichu')";
                 // Thực thi câu lệnh và kiểm tra kết quả
                 if ($conn->query($sql) === TRUE) {
-                    echo "Sản phẩm '$namesanpham' đã được thêm thành công.<br>";
+                    echo "<script>alert('mua hàng thành công ! xem ngay');window.location.href='xemdonhang.php';</script>";
                 } else {
                     echo "Lỗi: " . $conn->error . "<br>";
                 }

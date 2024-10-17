@@ -9,8 +9,9 @@ if (isset($_SESSION['user'])) {
     $username = $_SESSION['user']['username']; // Lấy username từ session
 
     // Truy vấn dữ liệu từ bảng `giohang` dựa vào username
-    $query = "SELECT * FROM thongtingiaohang WHERE username = '$username'";
+    $query = "SELECT * FROM thongtingiaohang WHERE username = '$username' ORDER BY thoigian DESC";
     $result = mysqli_query($conn, $query);
+    
 
     if (!$result) {
         die("Lỗi truy vấn: " . mysqli_error($conn));

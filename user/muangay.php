@@ -41,6 +41,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="fontawesome-free-5.12.1-web/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        body{
+            background-color: 	#faf0e6;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
@@ -55,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
              </ul>        
         </li>
         <li class="danhsach" ><a href="">GIỚI THIỆU</a></li>
-             <li class="danhsach" ><a href="">HỖ TRỢ</a></li>
+             <li class="danhsach" ><a href="hotro.php">HỖ TRỢ</a></li>
           </ul>
        </div>
        <div class="header--left">
