@@ -1,6 +1,13 @@
 <?php
 require "connet.php";
+$user = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+session_start();
 
+// Kiểm tra nếu chưa đăng nhập, chuyển hướng về trang login
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit;
+}
 // Lấy tổng số thành viên
 $sql_user = "SELECT COUNT(*) AS tong_user FROM user";
 $result_user = $conn->query($sql_user);
@@ -34,8 +41,8 @@ $result_donhang = $conn->query($sql_donhang);
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         .sidebar a:hover{
-            background-color: #faf0e6;
-            padding: 10px;
+            background-color: #838b8b;
+            padding: 10px 0px;
         }
     </style>
 </head>
@@ -46,6 +53,10 @@ $result_donhang = $conn->query($sql_donhang);
             <div style="padding: 10px;"><a href=""><i class="fa-solid fa-house"></i> Trang Chủ</a></div>
             <div style="padding: 10px;"><a href="themsuaxoa.php"><i class="fa-solid fa-wrench"></i> Thêm, Sửa, Xóa</a></div>
             <div style="padding: 10px;"><a href="quanlikhachhang.php"><i class="fa-solid fa-user"></i> Quản Lí Khách Hàng</a></div>
+            <div style="padding: 10px;"><a href="http://localhost:3000/user/index.php"><i class="fa-solid fa-angle-left fa-xl"></i>   Quay Lai Trang Chinh</a></div>
+            <div style="padding: 10px;"><a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Đăng Xuất</a></div>
+            
+            
         </div>
         <div class="main-content">
             <div class="header">

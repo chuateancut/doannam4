@@ -5,7 +5,7 @@ require "connet.php";
 $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 
 // Số sản phẩm hiển thị trên mỗi trang
-$limit = 12;
+$limit = 8;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
@@ -15,6 +15,8 @@ $result = mysqli_query($conn, $query);
 
 $query1 = "SELECT * FROM sanpham ORDER BY RAND() LIMIT 12";
 $result1 = mysqli_query($conn, $query1);
+$query2 = "SELECT * FROM sanpham ORDER BY RAND() LIMIT 12";
+$result2 = mysqli_query($conn, $query2);
 
 // Tính tổng số sản phẩm
 $total_query = "SELECT COUNT(*) AS total FROM sanpham";
@@ -52,10 +54,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
     <link rel="stylesheet" href="fontawesome-free-5.12.1-web/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+      />
     
 </head>
 <body>
@@ -81,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
           <div>
           <ul  class="user--ul" >
                     <li  class="user--li" > <a href="xemdonhang.php">Xem  Đơn Hàng </a> </li>
-                    <li style="padding-top: 10px;" class="user--li" > <a href="">Đổi Mật Khẩu</a> </li>
+                    <li style="padding-top: 10px;" class="user--li" > <a href="thaydoipass.php">Đổi Mật Khẩu</a> </li>
                     <li style="padding-top: 10px;" class="user--li" > <a href="logout.php">Đăng Xuất</a></li>
                    </ul>   
           </div>     
@@ -113,9 +116,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
         </div>
        <div class="container--head">
     
-   
-      
-       
        <?php 
         if(mysqli_num_rows($result1)> 0){
             while($row = mysqli_fetch_assoc($result1)){
@@ -199,8 +199,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
      </div>
 
      <div>
+     <div class="container--img--end" >
+        <div class="div--end" >
+        <img class="img--end" src="https://images.ctfassets.net/q602vtcuu3w3/6x8JoAmSh2p9DGNnr2pi3u/38e34337df6ade0ebe180f96ac1fd45c/UO_24_HP_Desktop_V_R_US.jpg?w=1420&q=80&fm=webp" alt="">
+      <a href="productgirl.php"><button>Thời Trang Nữ</button></a>
+        </div>
+       <div class="div--end" >
+       <img class="img--end"  src="https://images.ctfassets.net/q602vtcuu3w3/5b3XXclr1eABuqFWB3y65F/e35af498cd8d27ddc635af4d6ea7074f/UO_24_HP_Desktop_Graphics.jpg?w=1420&q=80&fm=webp" alt="">
+   <a href="productboy.php"> <button>Thời Trang Nam</button></a>
+       </div>
+     </div>  
+
+
+     <h3 style="padding:40px; text-align: center;" >CÓ THỂ BẠN QUAN TÂM</h3>
+     <div class="container--head2">
+       
+    
+    <?php 
+     if(mysqli_num_rows($result2)> 0){
+         while($row = mysqli_fetch_assoc($result2)){
+             ?>
+             <div class="background--product2">
+                 
+                 <img class="img--product" src="<?php echo htmlspecialchars($row['img']) ?>" alt="">
+                 <h3 class="h3--product"><?php echo htmlspecialchars($row['nameproduct']) ?></h3>
+                 <p><?php echo htmlspecialchars(number_format($row['price'], 0, ',', '.')) ?> VND</p>
+                 <form method="POST" action="">
+                     <input type="hidden" name="idsanpham" value="<?php echo $row['idproduct']; ?>">
+                     <input type="hidden" name="motasanpham" value="<?php echo $row['motasanpham']?>" id="">
+                     <input type="hidden" name="img" value="<?php echo $row['img']; ?>">
+                     <input type="hidden" name="namesanpham" value="<?php echo $row['nameproduct']; ?>">
+                     <input type="hidden" name="price" value="<?php echo $row['price']; ?>">
+                     
+                     <div style="padding: 15px;" class="btn--buy--add">
+                     
+ <a class="a--buy btn--buy " href="muangay.php?idsanpham=<?php echo $row['idproduct']; ?>&img=<?php echo urlencode($row['img']); ?>&namesanpham=<?php echo urlencode($row['nameproduct']); ?>&price=<?php echo $row['price']; ?>&motasanpham=<?php echo urldecode($row['motasanpham']); ?>">MUA NGAY</a>
+<!-- lưu thông tin dưới dạng url -->
+
+<button style="background-color: transparent; border: none;" type="submit" name="add--product" onclick="checkLoginuser(event); return confirm('Bạn có muốn thêm sản phẩm này vào giỏ hàng?')">
+ <i class="fa-solid fa-cart-shopping fa-2xl btn--add" style="color: #74C0FC;"></i>
+</button>
+                     </div>
+                 </form>
+             </div>
+             <?php
+         }
+     }
+     ?>
+   
+    
+    
+    </div>
+    <hr class="custom-hr">
+
+    <div class="end--aokhoac" >
+<img class="img--aokhoac" src="https://images.ctfassets.net/q602vtcuu3w3/2fSQdpP6YB60q40ZUlLbS9/94ca7167141a64ce26cb52a84bf6840f/UO_24_HP_TNF_Desktop.jpg?w=1420&q=80&fm=webp" alt="">
+<a href="aokhoac.php"><button>XEM NGAY</button></a>
+    </div>
+      
+    
+
      <footer class="footer">
-     <footer class="footer">
+        
     <div class="footer-container">
         <div class="footer-info">
             <h3>Thông tin cửa hàng</h3>
@@ -229,11 +289,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
     </div>
 </footer>
 
-</footer>
+
 
      </div>
 
-
+<script
+  type="text/javascript"
+  src="https://code.jquery.com/jquery-1.11.0.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+></script>
 </body>
 <script>
     // Lấy tất cả các nút li
@@ -316,5 +387,32 @@ function startCountdown() {
 
 startCountdown();
 
+</script>
+<script>
+    $('.container--head2').slick({
+  slidesToShow: 5,
+  slidesToScroll: 5,
+
+  prevArrow:`<button type='button' class='slick-prev pull-left'><i class="fa-solid fa-angle-left fa-2xl"></i></button>`,
+  nextArrow:`<button type='button' class='slick-next pull-right'><i class="fa-solid fa-angle-right fa-2xl"></i></button>`,
+        
+
+
+});
+
+var filtered = false;
+
+$('.js-filter').on('click', function(){
+    
+  if (filtered === false) {
+    $('.filtering').slick('slickFilter',':even');
+    $(this).text('Unfilter Slides');
+    filtered = true;
+  } else {
+    $('.filtering').slick('slickUnfilter');
+    $(this).text('Filter Slides');
+    filtered = false;
+  }
+});
 </script>
 </html>

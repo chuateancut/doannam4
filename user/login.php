@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Đăng Nhập - Shop Quần Áo</title>
+    <title>Đăng Nhập - Shop Quần Áo</title>
     
     <style>
         * {
@@ -102,7 +102,9 @@ if (isset($_POST['submit'])) {
         }
     </style>
 </head>
+
 <body>
+    
     <div class="signup-container">
         <h1>Đăng Nhập</h1>
         <form action="login.php" method="POST">
