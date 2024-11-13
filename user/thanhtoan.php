@@ -1,6 +1,9 @@
 <?php
 session_start();
 $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
+if($user ==""){
+    header("location: login.php");
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idsanpham = isset($_POST['idsanpham']) ? htmlspecialchars($_POST['idsanpham']) : '';
     $namesanpham = isset($_POST['namesanpham']) ? htmlspecialchars($_POST['namesanpham']) : '';

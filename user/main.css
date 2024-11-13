@@ -74,8 +74,9 @@ body{
     flex-direction: column;
     justify-content: center; /* Căn giữa theo chiều ngang */
     align-items: center;    /* Căn giữa theo chiều dọc */
-    height: 150vh;          /* Chiều cao 100% màn hình */
-   padding-top: 100px;
+    height: 170vh;          /* Chiều cao 100% màn hình */
+   padding-top: 150px;
+   width: 100%;
 }
 
 
@@ -599,7 +600,10 @@ align-items: center;
     margin-top: 20px;
     border-radius: 10px;
 }
-
+.img--content{
+    width: 80%;
+   
+}
 
 @media (max-width: 768px) {
    
@@ -626,7 +630,7 @@ align-items: center;
        
     }
     .img--content{
-        width: 100%;
+        width: 80%;
        
     }
     .product-item{

@@ -113,7 +113,7 @@
 .full--product{
     display: flex;
     justify-content: center;
-    padding-top: 150px;
+    padding-top: 100px;
 }
 .list--product{
     display: flex;
@@ -217,4 +217,7 @@ a {
 .text--sanphamquantam{
     text-align: center;
     padding-bottom: 50px;
+}
+.img--content{
+    width: 80%;
 }

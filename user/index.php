@@ -100,11 +100,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
 
            <div class="background--content" >
                <p class="text--hello" style="padding: 20px 0 " >THỜI TRANG GIÁ TỐT</p>
-               <div> <img class="img--content" src="https://cmsv2.yame.vn/uploads/dbf45ca3-baa4-4c3b-a082-5e0c9d39e06f/Th%e1%bb%9di_trang_gi%c3%a1_t%e1%bb%91t_trang_ch%e1%bb%a7.jpg?quality=80&w=1280&h=0" alt=""> </div>
+               <img class="img--content" src="https://cmsv2.yame.vn/uploads/dbf45ca3-baa4-4c3b-a082-5e0c9d39e06f/Th%e1%bb%9di_trang_gi%c3%a1_t%e1%bb%91t_trang_ch%e1%bb%a7.jpg?quality=80&w=1280&h=0" alt=""> 
 
-               <p class="text--hello"  style="padding: 20px 0 " >PHONG CÁCH QUÝ ÔNG</p>
-               <div> <img class="img--content" src="https://cmsv2.yame.vn/uploads/9126cda4-f813-4131-b416-8801d485a5d5/BST_NO_STYLE_TRANG_CH%e1%bb%a6.jpg?quality=80&w=1280&h=0" alt=""></div>
-               <p class="text--hello" style="padding: 20px 0 " >CHƯƠNG TRÌNH KHUYẾN MÃI</p>
+               <p class="text--hello"  style="padding: 30px 0 " >PHONG CÁCH QUÝ ÔNG</p>
+               <img class="img--content" src="https://cmsv2.yame.vn/uploads/9126cda4-f813-4131-b416-8801d485a5d5/BST_NO_STYLE_TRANG_CH%e1%bb%a6.jpg?quality=80&w=1280&h=0" alt="">
+               <p class="text--hello" style="padding: 30px 0 " >CHƯƠNG TRÌNH KHUYẾN MÃI</p>
            </div>
            
            <div style="margin-top: 100px;"  class="container">
@@ -147,9 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
             }
         }
         ?>
-      
-       
-       
+ 
        </div>
   </div> 
            <h2 class="text--fullproduct" >TẤT CẢ SẢN PHẨM</h2>

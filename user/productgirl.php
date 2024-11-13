@@ -59,7 +59,7 @@ $total_pages = ceil($total_products / $limit);
     <link rel="stylesheet" href="fontawesome-free-5.12.1-web/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 <style>
-    .footer {
+                .footer {
     background-color: #333; /* Màu nền cho footer */
     padding: 20px 0; /* Khoảng cách bên trong */
     color: white;
@@ -107,8 +107,9 @@ $total_pages = ceil($total_products / $limit);
     flex-direction: column;
     justify-content: center; /* Căn giữa theo chiều ngang */
     align-items: center;    /* Căn giữa theo chiều dọc */
-   padding-top: 80px;
+   padding-top: 70px;
 }
+
 
 </style>
 </head>
@@ -150,7 +151,7 @@ $total_pages = ceil($total_products / $limit);
     </div>
     <div class="background--content1" >
                <H2 class="text--hello" style="padding: 30px 0 " >ĐÀN ÔNG RẤT YÊU</H2>
-               <div> <img class="img--content" src="https://cmsv2.yame.vn/uploads/27af93bf-8ba8-4e0f-b347-f8fe78b6af1f/Mo_ban_san_pham_thoi_trang_moi.jpg?quality=80&w=1280&h=0" alt=""> </div>
+                <img class="img--content" src="https://cmsv2.yame.vn/uploads/27af93bf-8ba8-4e0f-b347-f8fe78b6af1f/Mo_ban_san_pham_thoi_trang_moi.jpg?quality=80&w=1280&h=0" alt="">
 
            </div>
            <h2 style="padding-top: 70px; text-align: center; margin-bottom: -70px;" >TẤT CẢ SẢN PHẨM</h2>
