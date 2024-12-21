@@ -206,11 +206,12 @@ $total_pages = ceil($total_products / $limit);
         <div class="footer-links">
             <h3>Liên kết nhanh</h3>
             <ul>
-                <li><a href="#">Giới thiệu</a></li>
-                <li><a href="#">Sản phẩm</a></li>
-                <li><a href="#">Chính sách</a></li>
-                <li><a href="#">Liên hệ</a></li>
-            </ul>
+                <li class="danhsach" ><a href="index.php">TRANG CHỦ</a></li>
+                <li class="danhsach"><a href="productboy.php">QUẦN ÁO NAM</a></li>
+                <li class="danhsach"><a href="productgirl.php">QUẦN ÁO NỮ</a></li>
+                <li class="danhsach"><a href="aokhoac.php">ÁO KHOÁC</a></li>
+                <li class="danhsach" ><a href="hotro.php">HỖ TRỢ</a></li>
+          </ul>
         </div>
         <div  class="footer-social">
             <h3 style="padding-bottom: 15px;" >Mạng xã hội</h3>

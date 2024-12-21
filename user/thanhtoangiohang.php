@@ -94,6 +94,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 button:hover {
     background-color: #0056b3;
 }
+.input_paypal{
+    width: 1%;
+    margin-right: 5px;
+}
+.payment_paypal{
+    display: none;
+}
     </style>
 </head>
 <body>
@@ -197,13 +204,16 @@ if (mysqli_num_rows($result) > 0) {
 </div>
 <div style="padding: 10px 0px;">
      <label  for="payment">Phương Thức Thanh Toán : </label><br>
-<select style="padding: 7px 0px; margin-top: 10px; " name="payment" id="">
+<select style="padding: 7px 0px; margin-top: 10px; " name="payment" id="payment">
     <option value="thanh toán khi nhận hàng">Thanh Toán Khi Nhận Hàng</option>
-    <option value="onl">Thanh Toán Online</option>
+    <option class="payment_online" value="onl">Thanh Toán Online</option>
 </select>
-
+   
      </div>
-     
+     <div class="payment_paypal" style="padding-top: 10px; padding-bottom: 10px    ; " >
+     <input class="input_paypal" type="radio"  >
+     <label  for=""> <i class="fa-brands fa-paypal fa-2xl" style="color: #74C0FC;"></i> Thanh Toán Bằng PayPal</label>
+     </div>
 
             <button type="submit" name="submit--giohang" >Xác Nhận Đặt Hàng</button>
             </div>
@@ -242,5 +252,18 @@ function calculateGrandTotal() {
 document.addEventListener("DOMContentLoaded", function() {
     calculateGrandTotal();
 });
+</script>
+<script>
+    const paymentSelect = document.getElementById('payment');
+    const paymentPaypal = document.querySelector('.payment_paypal');
+
+    // Lắng nghe sự thay đổi của select
+    paymentSelect.addEventListener('change', function () {
+        if (this.value === 'onl') {
+            paymentPaypal.style.display = 'block'; // Hiện PayPal
+        } else {
+            paymentPaypal.style.display = 'none'; // Ẩn PayPal
+        }
+    });
 </script>
 </html>

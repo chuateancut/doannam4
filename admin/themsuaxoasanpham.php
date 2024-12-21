@@ -103,7 +103,7 @@ if (isset($_POST['btn--thaydoi'])) {
     $stmt = $conn->prepare($sql);
     
     // Kiểu dữ liệu cho các tham số: "ssdsii"
-    $stmt->bind_param("ssdsii", $type, $img, $nameproduct, $price, $mota, $idsanpham); // Đảm bảo có đúng số tham số
+    $stmt->bind_param("sssssi", $type, $img, $nameproduct, $price, $mota, $idsanpham); // Đảm bảo có đúng số tham số
 
     if ($stmt->execute()) {
         echo "<script>alert('Thay sản phẩm thành công!'); window.location.href='themsuaxoa.php';</script>";

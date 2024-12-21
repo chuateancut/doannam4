@@ -200,15 +200,15 @@ $result_donhang = $conn->query($sql_donhang);
                                     <form action="xulydonhang.php" method="post">
                                         <select name="trangthai" id="">
                                             <option value=""><?php echo $rowdonhang['trangthai']; ?></option>
-                                            <option value="Chưa Giao">Chưa Giao</option>
+                                            <option value="Đang Chuẩn Bị Hàng">Đang Chuẩn Bị Hàng</option>
                                             <option value="Đã Giao Shipper">Đã Giao Shipper</option>
                                             <option value="Hoàn Thành">Hoàn Thành</option>
                                             <option value="Đã Hủy">Đã Hủy</option>
                                         </select>
                                         <input type="hidden" name="madonhang" value="<?php echo $rowdonhang['madonhang']; ?>">
                                         <div style="padding-top: 5px;" >
-                                            <button name="huydon">Hủy Đơn</button>
-                                            <button name="capnhattrangthai">Cập nhật</button>
+                                            <button class="delete"  name="huydon">Hủy Đơn</button>
+                                            <button class="update"  name="capnhattrangthai">Cập nhật</button>
                                         </div>
                                     </form>
                                 </td>
@@ -233,4 +233,21 @@ $result_donhang = $conn->query($sql_donhang);
     }
     </script>
 </body>
+<script>
+    // Thêm sự kiện click cho tất cả các nút có class 'update'
+    document.querySelectorAll('.update').forEach(function(button) {
+        button.addEventListener('click', function() {
+            alert("Cập nhật đơn hàng thành công");
+        });
+    });
+
+    // Thêm sự kiện click cho tất cả các nút có class 'delete'
+    document.querySelectorAll('.delete').forEach(function(button) {
+        button.addEventListener('click', function() {
+            alert("Xóa đơn hàng thành công");
+        });
+    });
+</script>
+
+
 </html>

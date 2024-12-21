@@ -116,12 +116,12 @@ $total_pages = ceil($total_products / $limit);
 <body>
 <div class="header">
 <div class="header--right">
-          <ul>
+<ul>
                 <li class="danhsach" ><a href="index.php">TRANG CHỦ</a></li>
                 <li class="danhsach" ><a href="productboy.php">QUẦN ÁO NAM</a></li>
                 <li class="danhsach"><a href="productgirl.php">QUẦN ÁO NỮ</a></li>
                 <li class="danhsach"><a href="aokhoac.php">ÁO KHOÁC</a></li>
-                <li class="danhsach" ><a href="">HỖ TRỢ</a></li>
+                <li class="danhsach" ><a href="hotro.php">HỖ TRỢ</a></li>
           </ul>
        </div>
        <div class="header--left">

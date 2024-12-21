@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
             header("Location: index.php?username=" . urlencode($username));
             exit;
         } else {
-            $error_message = "Mật khẩu không giống nhau.";
+            $error_message = "Mật khẩu sai";
         }
     } else {
         $error_message = "Tên Đăng Nhập sai.";

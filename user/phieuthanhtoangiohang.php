@@ -7,7 +7,7 @@ if (isset($_POST['submit--giohang'])) {
     $numberphone = $_POST['phone'];
     $diachhicuthe = $_POST['address'];
     $ghichu = $_POST['notes'];
-    
+    $trangthai ="đang chuẩn bị gói hàng" ;
     // Kiểm tra nếu bất kỳ giá trị nào bị bỏ trống
     if (empty($namenguoinhan) || empty($numberphone) || empty($diachhicuthe)) {
         echo "Vui lòng điền đầy đủ thông tin!";
@@ -32,10 +32,11 @@ if (isset($_POST['submit--giohang'])) {
                 $color = htmlspecialchars($color_array[$i]);
                 $tongtien = htmlspecialchars($tongtien_array[$i]);
                 $price = htmlspecialchars($price_array[$i]);
+                $trangthai ="đang chuẩn bị gói hàng" ;
 
                 // Tạo câu lệnh SQL thêm dữ liệu vào bảng 'thongtingiaohang'
-                $sql = "INSERT INTO thongtingiaohang (idsanpham, username, tennguoinhan, numberphone, diachicuthe, namesanpham, soluong, color, size, price, ghichu) 
-                        VALUES ('$idsanpham', '$user', '$namenguoinhan', '$numberphone', '$diachhicuthe', '$namesanpham', '$soluong', '$color', '$size', '$price', '$ghichu')";
+                $sql = "INSERT INTO thongtingiaohang (idsanpham, username, tennguoinhan, numberphone, diachicuthe, namesanpham, soluong, color, size, price, ghichu,trangthai) 
+                        VALUES ('$idsanpham', '$user', '$namenguoinhan', '$numberphone', '$diachhicuthe', '$namesanpham', '$soluong', '$color', '$size', '$price', '$ghichu','$trangthai')";
 
                 // Thực thi câu lệnh và kiểm tra kết quả
                 if ($conn->query($sql) === TRUE) {

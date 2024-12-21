@@ -101,6 +101,9 @@ td{
 tr:hover {
             background-color: 	#ffe4c4; /* Màu nền khi di chuột qua */
         }
+        .order-details h2{
+text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -142,7 +145,7 @@ tr:hover {
 
            <div class="xemdonhang"> 
            <div class="order-details">
-    <h2 style="padding: 0px 20px 20px 0px;" >TRẠNG THÁI ĐƠN HÀNG CỦA : <?php echo htmlspecialchars($username); ?></h2>
+    <h2 style="padding: 0px 20px 20px 0px;" >Trạng Thái Đơn Hàng Của : <?php echo htmlspecialchars($username); ?></h2>
 
     <table>
         <tr>

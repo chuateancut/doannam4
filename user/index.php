@@ -21,10 +21,12 @@ $result2 = mysqli_query($conn, $query2);
 // Tính tổng số sản phẩm
 $total_query = "SELECT COUNT(*) AS total FROM sanpham";
 $total_result = mysqli_query($conn, $total_query);
+
 $total_row = mysqli_fetch_assoc($total_result);
 $total_products = $total_row['total']; // Tổng số sản phẩm
 
 $total_pages = ceil($total_products / $limit); // Tổng số trang
+
 
 // Xử lý khi nhấn nút thêm sản phẩm vào giỏ hàng
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
@@ -151,6 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
        </div>
   </div> 
            <h2 class="text--fullproduct" >TẤT CẢ SẢN PHẨM</h2>
+           
            <div class="full--product">
             
     <div class="list--product">
