@@ -43,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         width: 100%;
         border-collapse: collapse;
       }
+    
       th, td {
         padding: 10px;
         text-align: center;
@@ -76,6 +77,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 button:hover {
     background-color: #0056b3;
 }
+
+#paypal-button-container{
+    display: none;
+
+}
+
+
     </style>
 </head>
 <body>
@@ -168,28 +176,44 @@ button:hover {
             <textarea id="notes" name="notes" rows="4"></textarea>
 
             <div style="margin-top: 20px; font-size: 20px; color: #007bff; ">
-            <?php 
-                        if ($soluong == 1) {
-                            echo "<p> Tổng Tiền : " . number_format($price, 0, ',', '.') . " VND</p>";
-                        } else {
-                            echo "Tổng Tiền : " .number_format($tongtien, 0, ',', '.') . " VND";
-                        }
-                        ?>
+          <?php 
+// Tỷ giá USD/VND (cập nhật tùy thực tế)
+$tygia = 23500;
+
+// Tính tổng tiền VND
+if ($soluong == 1) {
+    $tongtien_vnd = $price;
+} else {
+    $tongtien_vnd = $tongtien;
+}
+
+// Tính tổng tiền USD
+$tongtien_usd = $tongtien_vnd / $tygia;
+
+// Hiển thị thông tin
+echo "<p> Tổng Tiền: " . number_format($tongtien_vnd, 0, ',', '.') . " VND</p>";
+
+?>
+<input type="hidden" name="tongtien_usd" value="<?php echo round($tongtien_usd, 2); ?>" id="tongtien">
         
     </div>
      <div style="padding: 10px 0px;">
      <label  for="payment">Phương Thức Thanh Toán : </label><br>
-<select style="padding: 7px 0px; margin-top: 10px; " name="payment" id="">
+<select style="padding: 7px 0px; margin-top: 10px; " name="payment" id="payment-select">
     <option value="thanh toán khi nhận hàng">Thanh Toán Khi Nhận Hàng</option>
-    <option value="onl">Thanh Toán Online</option>
+    <option class="onl" value="thanh toán bằng paypal">Thanh Toán Online</option>
 </select>
 
      </div>
-            <button type="submit" name="submit" >Xác Nhận Đặt Hàng</button>
+     <div id="paypal-button-container"></div>
+    
+     <button type="submit" name="submit" id="submit-order">Xác Nhận Đặt Hàng</button>
+
             </div>
         </form>
     </div>
 </div>
+
 </body>
 <script>
 function updateTotal(input, price) {
@@ -218,5 +242,55 @@ function calculateGrandTotal() {
 document.addEventListener("DOMContentLoaded", function() {
     calculateGrandTotal();
 });
+</script>
+<script
+        src="https://www.paypal.com/sdk/js?client-id=AZguRLQRcQLTR1mO6LYJGeUY6u6StGLTXwTy4L2A2D9XC4OCBdNVlwiyHF_HwAq5Ot86bpHlVpNDV6_R&currency=USD">
+    </script>
+
+
+
+        <script>
+    paypal.Buttons({
+        style: {
+            layout: 'vertical',  // Hiển thị nút theo chiều dọc
+            color: 'gold',       // Màu của nút
+            shape: 'rect',       // Hình dạng nút (rectangle)
+            label: 'paypal'      // Chỉ hiển thị nút PayPal
+        },
+        createOrder: function(data, actions) {
+            var tongtien_usd = document.getElementById('tongtien').value;
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: tongtien_usd // Giá trị thanh toán
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Thanh toán thành công, cảm ơn bạn ' + details.payer.name.given_name + '!');
+           window.location.replace('index.php?thanhtoan=paypal');
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
+
+<script>
+  // Lấy phần tử select và div
+const paymentSelect = document.getElementById('payment-select'); // Thẻ <select>
+const paypalContainer = document.getElementById('paypal-button-container'); // Div chứa PayPal
+
+// Lắng nghe sự kiện thay đổi giá trị của select
+paymentSelect.addEventListener('change', (event) => {
+    const selectedValue = event.target.value; // Lấy giá trị được chọn
+
+    if (selectedValue === 'thanh toán bằng paypal') {
+        paypalContainer.style.display = 'block'; // Hiển thị div PayPal
+    } else {
+        paypalContainer.style.display = 'none'; // Ẩn div PayPal
+    }
+});
+
 </script>
 </html>

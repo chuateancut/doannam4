@@ -1,4 +1,7 @@
 <?php 
+session_start();
+$user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
+require "connet.php";  
 if (isset($_POST['submit--giohang'])) {
     // Lấy các giá trị từ form
     $madonhang = uniqid(); // Tạo mã đơn hàng (có thể thay đổi cách tạo mã này)
@@ -7,6 +10,7 @@ if (isset($_POST['submit--giohang'])) {
     $numberphone = $_POST['phone'];
     $diachhicuthe = $_POST['address'];
     $ghichu = $_POST['notes'];
+    $payment = $_POST['payment'];
     $trangthai ="đang chuẩn bị gói hàng" ;
     // Kiểm tra nếu bất kỳ giá trị nào bị bỏ trống
     if (empty($namenguoinhan) || empty($numberphone) || empty($diachhicuthe)) {
@@ -15,13 +19,12 @@ if (isset($_POST['submit--giohang'])) {
         // Lấy thông tin từ giỏ hàng (lưu trong mảng)
         $idsanpham_array = isset($_POST['idsanpham']) ? $_POST['idsanpham'] : [];
         $namesanpham_array = isset($_POST['namesanpham']) ? $_POST['namesanpham'] : [];
-        $soluong_array = isset($_POST['soluong']) ? $_POST['soluong'] : [];
+        $soluong_array = isset($_POST['quantity']) ? $_POST['quantity'] : [];
         $size_array = isset($_POST['size']) ? $_POST['size'] : [];
         $color_array = isset($_POST['color']) ? $_POST['color'] : [];
         $tongtien_array = isset($_POST['tongtien']) ? $_POST['tongtien'] : [];
         $price_array = isset($_POST['price']) ? $_POST['price'] : [];
-
-        // Kiểm tra nếu giỏ hàng có sản phẩm
+         // Kiểm tra nếu giỏ hàng có sản phẩm
         if (count($idsanpham_array) > 0) {
             // Duyệt qua từng sản phẩm và thêm vào cơ sở dữ liệu
             for ($i = 0; $i < count($idsanpham_array); $i++) {
@@ -31,16 +34,12 @@ if (isset($_POST['submit--giohang'])) {
                 $size = htmlspecialchars($size_array[$i]);
                 $color = htmlspecialchars($color_array[$i]);
                 $tongtien = htmlspecialchars($tongtien_array[$i]);
-                $price = htmlspecialchars($price_array[$i]);
-                $trangthai ="đang chuẩn bị gói hàng" ;
-
                 // Tạo câu lệnh SQL thêm dữ liệu vào bảng 'thongtingiaohang'
-                $sql = "INSERT INTO thongtingiaohang (idsanpham, username, tennguoinhan, numberphone, diachicuthe, namesanpham, soluong, color, size, price, ghichu,trangthai) 
-                        VALUES ('$idsanpham', '$user', '$namenguoinhan', '$numberphone', '$diachhicuthe', '$namesanpham', '$soluong', '$color', '$size', '$price', '$ghichu','$trangthai')";
-
+                $sql = "INSERT INTO thongtingiaohang (idsanpham, username, tennguoinhan, numberphone, diachicuthe, namesanpham, soluong, color, size, price,phuongthucthanhtoan, ghichu,trangthai) 
+                VALUES ('$idsanpham', '$user', '$namenguoinhan', '$numberphone', '$diachhicuthe', '$namesanpham', '$soluong', '$color', '$size', '$tongtien','$payment', '$ghichu','$trangthai')";
                 // Thực thi câu lệnh và kiểm tra kết quả
                 if ($conn->query($sql) === TRUE) {
-                    echo "Sản phẩm '$namesanpham' đã được thêm thành công.<br>";
+                    echo "<script>alert('mua hàng thành công ! xem ngay');window.location.href='xemdonhang.php';</script>";
                 } else {
                     echo "Lỗi: " . $conn->error . "<br>";
                 }
@@ -48,19 +47,10 @@ if (isset($_POST['submit--giohang'])) {
         } else {
             echo "Không có sản phẩm nào trong giỏ hàng để thanh toán.";
         }
-
         // Đóng kết nối sau khi tất cả các sản phẩm đã được thêm
         $conn->close();
     }
 }
+
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanh Toán</title>
-</head>
-<body>
-</body>
-</html>
+

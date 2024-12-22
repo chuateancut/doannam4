@@ -139,7 +139,7 @@ button:hover {
 
 <div class="container--thanhtoan">
     <div class="cart-list">
-        <form action="phieuthanhtoan.php" method="post">
+        <form action="phieuthanhtoangiohang.php" method="post">
             <table>
             <tr>
     <th>Ảnh Sản Phẩm</th>
