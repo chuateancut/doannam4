@@ -252,17 +252,17 @@ document.addEventListener("DOMContentLoaded", function() {
         <script>
     paypal.Buttons({
         style: {
-            layout: 'vertical',  // Hiển thị nút theo chiều dọc
-            color: 'gold',       // Màu của nút
-            shape: 'rect',       // Hình dạng nút (rectangle)
-            label: 'paypal'      // Chỉ hiển thị nút PayPal
+            layout: 'vertical', 
+            color: 'gold',       
+            shape: 'rect',       
+            label: 'paypal'      
         },
         createOrder: function(data, actions) {
             var tongtien_usd = document.getElementById('tongtien').value;
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: tongtien_usd // Giá trị thanh toán
+                        value: tongtien_usd 
                     }
                 }]
             });
