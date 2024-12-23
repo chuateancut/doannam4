@@ -149,13 +149,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
             }
         }
         ?>
- 
        </div>
   </div> 
            <h2 class="text--fullproduct" >TẤT CẢ SẢN PHẨM</h2>
-           
            <div class="full--product">
-            
     <div class="list--product">
         <?php 
         if(mysqli_num_rows($result)> 0){

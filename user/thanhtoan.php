@@ -13,9 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $color = isset($_POST['color']) ? $_POST['color'] : '';
     $soluong = $_POST['soluong'];
     $tongtien = $_POST['total'];
-
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,8 +80,12 @@ button:hover {
     display: none;
 
 }
-
-
+.cmmpaypal {
+    width: 150%;
+}
+#paypal-button-container{
+    width: 150%;
+}
     </style>
 </head>
 <body>
@@ -205,7 +207,9 @@ echo "<p> Tổng Tiền: " . number_format($tongtien_vnd, 0, ',', '.') . " VND</
 </select>
 
      </div>
+     <div class="cmmpaypal" >
      <div id="paypal-button-container"></div>
+     </div>
     
      <button type="submit" name="submit" id="submit-order">Xác Nhận Đặt Hàng</button>
 
@@ -247,33 +251,71 @@ document.addEventListener("DOMContentLoaded", function() {
         src="https://www.paypal.com/sdk/js?client-id=AZguRLQRcQLTR1mO6LYJGeUY6u6StGLTXwTy4L2A2D9XC4OCBdNVlwiyHF_HwAq5Ot86bpHlVpNDV6_R&currency=USD">
     </script>
 
-
-
         <script>
-    paypal.Buttons({
-        style: {
-            layout: 'vertical', 
-            color: 'gold',       
-            shape: 'rect',       
-            label: 'paypal'      
-        },
-        createOrder: function(data, actions) {
-            var tongtien_usd = document.getElementById('tongtien').value;
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: tongtien_usd 
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                alert('Thanh toán thành công, cảm ơn bạn ' + details.payer.name.given_name + '!');
-           window.location.replace('index.php?thanhtoan=paypal');
-            });
-        }
-    }).render('#paypal-button-container');
+   paypal.Buttons({
+    style: {
+        layout: 'vertical', 
+        color: 'gold',       
+        shape: 'rect',       
+        label: 'paypal'      
+    },
+    createOrder: function(data, actions) {
+        var tongtien_usd = document.getElementById('tongtien').value;
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    value: tongtien_usd 
+                }
+            }]
+        });
+    },
+    onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+            // Thực hiện hành động sau khi thanh toán thành công
+            alert('Thanh toán thành công, cảm ơn bạn ' + details.payer.name.given_name + '!');
+            
+            // Lấy dữ liệu từ form
+            var orderData = {
+                idsanpham: document.querySelector('input[name="idsanpham"]').value,
+                namesanpham: document.querySelector('input[name="namesanpham"]').value,
+                soluong: document.querySelector('input[name="soluong"]').value,
+                size: document.querySelector('input[name="size"]').value,
+                color: document.querySelector('input[name="color"]').value,
+                tongtien: document.querySelector('input[name="tongtien"]').value,
+                price: document.querySelector('input[name="price"]').value,
+                name: document.querySelector('input[name="name"]').value,
+                phone: document.querySelector('input[name="phone"]').value,
+                address: document.querySelector('input[name="address"]').value,
+                notes: document.querySelector('textarea[name="notes"]').value,
+                payment: 'thanh toán bằng paypal', // Phương thức thanh toán
+            };
+
+            // Gửi dữ liệu đến server qua AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'phieuthanhtoan.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+    // Hiển thị thông báo thành công trước khi chuyển hướng
+    alert("Thanh toán PayPal thành công, xem đơn hàng ngay!");
+
+    // Sau khi hiển thị thông báo, chuyển hướng tới trang xem đơn hàng
+    window.location.replace('xemdonhang.php');
+} else {
+    alert('Đã xảy ra lỗi khi lưu thông tin.');
+}
+            };
+
+            // Chuyển đổi dữ liệu thành chuỗi query string và gửi đi
+            var params = 'submit=true&' + Object.keys(orderData).map(function(key) {
+                return key + '=' + encodeURIComponent(orderData[key]);
+            }).join('&');
+
+            xhr.send(params);
+        });
+    }
+}).render('#paypal-button-container');
+
 </script>
 
 <script>
