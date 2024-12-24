@@ -9,7 +9,7 @@ $limit = 8;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
-// Truy vấn sản phẩm với giới hạn và vị trí bắt đầu
+//  sản phẩm với giới hạn và vị trí bắt đầu
 $query = "SELECT * FROM sanpham LIMIT $limit OFFSET $offset";
 $result = mysqli_query($conn, $query);
 
@@ -61,7 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
         type="text/css"
         href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
       />
-    
 </head>
 <body>
     <div class="header">
@@ -75,6 +74,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
           </ul>
        </div>
        <div class="header--left">
+       <div>
+    <form method="get" action="">
+        <input class="input_timkiem" type="text" name="keyword" placeholder="tìm sản phẩm">
+        <button class="btn_timkiem" type="submit"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
+    </form>
+</div>
+
          <ul class="header--left--ul" >
           <?php 
                 if ($user) { // Kiểm tra nếu user đã đăng nhập
@@ -99,6 +105,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
          </ul>
        </div>
     </div>
+    <h3 class="h3_timkiem" style="text-align: center;">TÌM KIẾM SẢN PHẨM</h3>
+    <div class="container--timkiem" style="display: none;">
+   
+    <?php
+    if (isset($_GET['keyword'])) {
+        $keywordtimkiem = $_GET['keyword'];
+        $sqltimkiem = "SELECT * FROM sanpham WHERE nameproduct LIKE ? LIMIT 8";
+
+        $stmttimkiem = $conn->prepare($sqltimkiem);
+        $searchtimkiem = "%" . $keywordtimkiem . "%";
+        $stmttimkiem->bind_param("s", $searchtimkiem);
+        $stmttimkiem->execute();
+        $resulttimkiem = $stmttimkiem->get_result();
+
+        if ($resulttimkiem->num_rows > 0) {
+            echo "<div class='list--product'>";
+            while ($rowtimkiem = $resulttimkiem->fetch_assoc()) {
+                ?>
+             <form method="POST" action="">
+            <div class="product-item" id="main_timkiem" >
+                    <img class="img--product" src="<?php echo htmlspecialchars($rowtimkiem['img']); ?>" alt="<?php echo htmlspecialchars($rowtimkiem['nameproduct']); ?>">
+                    <h3 class="h3--product"><?php echo htmlspecialchars($rowtimkiem['nameproduct']); ?></h3>
+                    <p><?php echo htmlspecialchars(number_format($rowtimkiem['price'], 0, ',', '.')); ?> VND</p>
+                    <input type="hidden" name="idsanpham" value="<?php echo $rowtimkiem['idproduct']; ?>">
+                        <input type="hidden" name="motasanpham" value="<?php echo $rowtimkiem['motasanpham']?>" id="">
+                        <input type="hidden" name="img" value="<?php echo $rowtimkiem['img']; ?>">
+                        <input type="hidden" name="namesanpham" value="<?php echo $rowtimkiem['nameproduct']; ?>">
+                        <input type="hidden" name="price" value="<?php echo $rowtimkiem['price']; ?>">
+                    <div class="btn--buy--add" style="padding: 15px;">
+                        <a class="a--buy btn--buy" 
+                           href="muangay.php?idsanpham=<?php echo urlencode($rowtimkiem['idproduct']); ?>&img=<?php echo urlencode($rowtimkiem['img']); ?>&namesanpham=<?php echo urlencode($rowtimkiem['nameproduct']); ?>&price=<?php echo $rowtimkiem['price']; ?>&motasanpham=<?php echo urlencode($rowtimkiem['motasanpham']); ?>">
+                            MUA NGAY
+                        </a>
+                        <button style="background-color: transparent; border: none;" type="submit" name="add--product" onclick="checkLoginuser(event); return confirm('Bạn có muốn thêm sản phẩm này vào giỏ hàng?')">
+    <i class="fa-solid fa-cart-shopping fa-2xl btn--add" style="color: #74C0FC;"></i>
+</button>
+                    </div>
+                </div>
+            </form>
+                <?php
+            }
+            echo "</div>";
+        } else {
+            echo "<p>Không tìm thấy sản phẩm nào.</p>";
+        }
+    }
+    ?>
+</div>
 
            <div class="background--content" >
                <p class="text--hello" style="padding: 20px 0 " >THỜI TRANG GIÁ TỐT</p>
@@ -207,12 +261,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
    <a href="productboy.php"> <button>Thời Trang Nam</button></a>
        </div>
      </div>  
-
-
      <h3 style="padding:40px; text-align: center;" >CÓ THỂ BẠN QUAN TÂM</h3>
      <div class="container--head2">
-       
-    
     <?php 
      if(mysqli_num_rows($result2)> 0){
          while($row = mysqli_fetch_assoc($result2)){
@@ -349,11 +399,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add--product'])) {
             window.location.href = "login.php"; // Chuyển đến trang đăng nhập
             event.preventDefault(); // Ngăn không cho gửi form
         }
-        // Nếu đã đăng nhập, không làm gì thêm
+       
     }
 </script>
 <script>
-    // Set thời gian đếm ngược (ví dụ: 1 giờ 34 phút 30 giây)
+   
 let hours = 9;
 let minutes = 34;
 let seconds = 30;
@@ -413,4 +463,20 @@ $('.js-filter').on('click', function(){
   }
 });
 </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const h3TimKiem = document.querySelector(".h3_timkiem");
+        const containerTimKiem = document.querySelector(".container--timkiem");
+
+        // Kiểm tra URL chứa từ khóa tìm kiếm
+        const params = new URLSearchParams(window.location.search);
+        if (params.has("keyword") && params.get("keyword").trim() !== "") {
+            h3TimKiem.style.display = "block"; // Hiển thị tiêu đề
+            containerTimKiem.style.display = "flex"; // Hiển thị container kết quả
+        }
+    });
+</script>
+
+
 </html>

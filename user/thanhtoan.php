@@ -208,7 +208,7 @@ echo "<p> Tổng Tiền: " . number_format($tongtien_vnd, 0, ',', '.') . " VND</
 
      </div>
      <div class="cmmpaypal" >
-     <div id="paypal-button-container"></div>
+     <div id="paypal-button-container" ></div>
      </div>
     
      <button type="submit" name="submit" id="submit-order">Xác Nhận Đặt Hàng</button>

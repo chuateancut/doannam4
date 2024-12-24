@@ -664,6 +664,37 @@ align-items: center;
         padding-left: 5px;
     }
   }
+.input_timkiem{
+    padding: 8px;
+    width: 250px;
+    border-radius: 15px;
+    border: none;
+}
+.btn_timkiem{
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
 
-
+    background-color: #4d4d4d;
+}
+.full--product-timkiem{
+    display: flex;
+    
+}
+.container--timkiem{
  
+    display: flex;
+    justify-content: center;
+}
+.h3_timkiem{
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 20px;
+    display: none;
+}
+#main_timkiem{
+    flex-wrap: wrap; /* Đảm bảo các sản phẩm tự động xuống hàng */
+    gap: 40px; /* Khoảng cách giữa các sản phẩm */
+    max-width: 1250px;
+    justify-content: center;
+}

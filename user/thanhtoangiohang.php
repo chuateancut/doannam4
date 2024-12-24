@@ -98,8 +98,9 @@ button:hover {
     width: 1%;
     margin-right: 5px;
 }
-.payment_paypal{
+#paypal-button-container{
     display: none;
+
 }
     </style>
 </head>
@@ -200,21 +201,24 @@ if (mysqli_num_rows($result) > 0) {
 
             <div style="margin-top: 20px;">
         <strong>Tổng tất cả: </strong>
-        <span id="grandTotal">0 đ</span>
+        <span  id="grandTotal">0 đ</span>
+        <input type="hidden" id="grandTotalValue" name="grandTotalValue" value="0">
+     <?php 
+     $tygia = 23500;
+     ?>
 </div>
 <div style="padding: 10px 0px;">
      <label  for="payment">Phương Thức Thanh Toán : </label><br>
-<select style="padding: 7px 0px; margin-top: 10px; " name="payment" id="payment">
+     <select style="padding: 7px 0px; margin-top: 10px; " name="payment" id="payment-select">
     <option value="thanh toán khi nhận hàng">Thanh Toán Khi Nhận Hàng</option>
-    <option class="payment_online" value="onl">Thanh Toán Online</option>
+    <option class="onl" value="thanh toán bằng paypal">Thanh Toán Online</option>
 </select>
    
      </div>
-     <div class="payment_paypal" style="padding-top: 10px; padding-bottom: 10px    ; " >
-     <input class="input_paypal" type="radio"  >
-     <label  for=""> <i class="fa-brands fa-paypal fa-2xl" style="color: #74C0FC;"></i> Thanh Toán Bằng PayPal</label>
-     </div>
-
+  
+     <div class="cmmpaypal" >
+     <div id="paypal-button-container" ></div>
+</div>
             <button type="submit" name="submit--giohang" >Xác Nhận Đặt Hàng</button>
             </div>
         </form>
@@ -254,16 +258,169 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 <script>
-    const paymentSelect = document.getElementById('payment');
-    const paymentPaypal = document.querySelector('.payment_paypal');
+function updateTotal(input, price) {
+    const quantity = input.value;
+    const totalCell = input.parentElement.nextElementSibling; // Ô tổng tiền
+    const newTotal = quantity * price;
+    totalCell.textContent = newTotal.toLocaleString('vi-VN') + " đ";
+    
+    calculateGrandTotal(); // Cập nhật tổng tiền tất cả sản phẩm
+}
 
-    // Lắng nghe sự thay đổi của select
-    paymentSelect.addEventListener('change', function () {
-        if (this.value === 'onl') {
-            paymentPaypal.style.display = 'block'; // Hiện PayPal
-        } else {
-            paymentPaypal.style.display = 'none'; // Ẩn PayPal
-        }
+function calculateGrandTotal() {
+    let grandTotal = 0;
+    const totalCells = document.querySelectorAll('.total'); // Tìm tất cả các ô tổng tiền
+
+    totalCells.forEach(cell => {
+        const total = parseInt(cell.textContent.replace(' đ', '').replace(/\./g, '')); // Bỏ đơn vị tiền tệ và dấu '.'
+        grandTotal += total;
     });
+
+    // Cập nhật tổng tiền cuối cùng
+    document.getElementById('grandTotal').textContent = grandTotal.toLocaleString('vi-VN') + ' đ';
+}
+
+// Tính tổng tiền ngay khi trang được tải
+document.addEventListener("DOMContentLoaded", function() {
+    calculateGrandTotal();
+});
+</script>
+<script>
+    function calculateGrandTotal() {
+    let grandTotal = 0;
+    const totalCells = document.querySelectorAll('.total'); // Tìm tất cả các ô tổng tiền
+
+    totalCells.forEach(cell => {
+        const total = parseInt(cell.textContent.replace(' đ', '').replace(/\./g, '')); // Bỏ đơn vị tiền tệ và dấu '.'
+        grandTotal += total;
+    });
+
+    // Cập nhật tổng tiền cuối cùng hiển thị
+    document.getElementById('grandTotal').textContent = grandTotal.toLocaleString('vi-VN') + ' đ';
+
+    // Cập nhật giá trị thô cho input ẩn (không định dạng)
+    document.getElementById('grandTotalValue').value = grandTotal;
+}
+
+</script>
+<script
+        src="https://www.paypal.com/sdk/js?client-id=AZguRLQRcQLTR1mO6LYJGeUY6u6StGLTXwTy4L2A2D9XC4OCBdNVlwiyHF_HwAq5Ot86bpHlVpNDV6_R&currency=USD">
+    </script>
+
+        <script>
+   paypal.Buttons({
+    style: {
+        layout: 'vertical', 
+        color: 'gold',       
+        shape: 'rect',       
+        label: 'paypal'      
+    },
+    
+    createOrder: function(data, actions) {
+    const grandTotalUSD = (document.getElementById('grandTotalValue').value / <?php echo $tygia; ?>).toFixed(2); // Chuyển đổi sang USD
+    return actions.order.create({
+        purchase_units: [{
+            amount: {
+                value: grandTotalUSD // Giá trị số USD
+            }
+        }]
+    });
+},
+
+    onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+            // Thực hiện hành động sau khi thanh toán thành công
+            alert('Thanh toán thành công, cảm ơn bạn ' + details.payer.name.given_name + '!');
+            
+            // Lấy dữ liệu từ form
+            var orderData = {
+    idsanpham: [],
+    namesanpham: [],
+    soluong: [],
+    size: [],
+    color: [],
+    tongtien: [],
+    price: [],
+    name: document.querySelector('input[name="name"]').value,
+    phone: document.querySelector('input[name="phone"]').value,
+    address: document.querySelector('input[name="address"]').value,
+    notes: document.querySelector('textarea[name="notes"]').value,
+    payment: document.querySelector('select[name="payment"]').value,
+};
+
+document.querySelectorAll('input[name="idsanpham[]"]').forEach((input) => {
+    orderData.idsanpham.push(input.value);
+});
+
+document.querySelectorAll('input[name="namesanpham[]"]').forEach((input) => {
+    orderData.namesanpham.push(input.value);
+});
+
+document.querySelectorAll('input[name="quantity[]"]').forEach((input) => {
+    orderData.soluong.push(input.value);
+});
+
+document.querySelectorAll('input[name="size[]"]').forEach((input) => {
+    orderData.size.push(input.value);
+});
+
+document.querySelectorAll('input[name="color[]"]').forEach((input) => {
+    orderData.color.push(input.value);
+});
+
+document.querySelectorAll('input[name="tongtien[]"]').forEach((input) => {
+    orderData.tongtien.push(input.value);
+});
+
+document.querySelectorAll('input[name="price[]"]').forEach((input) => {
+    orderData.price.push(input.value);
+});
+
+
+
+            // Gửi dữ liệu đến server qua AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'phieuthanhtoangiohang.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+    // Hiển thị thông báo thành công trước khi chuyển hướng
+    alert("Thanh toán PayPal thành công, xem đơn hàng ngay!");
+
+    // Sau khi hiển thị thông báo, chuyển hướng tới trang xem đơn hàng
+    window.location.replace('xemdonhang.php');
+} else {
+    alert('Đã xảy ra lỗi khi lưu thông tin.');
+}
+            };
+
+            // Chuyển đổi dữ liệu thành chuỗi query string và gửi đi
+            var params = 'submit=true&' + Object.keys(orderData).map(function(key) {
+                return key + '=' + encodeURIComponent(orderData[key]);
+            }).join('&');
+
+            xhr.send(params);
+        });
+    }
+}).render('#paypal-button-container');
+
+</script>
+
+<script>
+  // Lấy phần tử select và div
+const paymentSelect = document.getElementById('payment-select'); // Thẻ <select>
+const paypalContainer = document.getElementById('paypal-button-container'); // Div chứa PayPal
+
+// Lắng nghe sự kiện thay đổi giá trị của select
+paymentSelect.addEventListener('change', (event) => {
+    const selectedValue = event.target.value; // Lấy giá trị được chọn
+
+    if (selectedValue === 'thanh toán bằng paypal') {
+        paypalContainer.style.display = 'block'; // Hiển thị div PayPal
+    } else {
+        paypalContainer.style.display = 'none'; // Ẩn div PayPal
+    }
+});
+
 </script>
 </html>
